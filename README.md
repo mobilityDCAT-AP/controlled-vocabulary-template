@@ -1,10 +1,10 @@
 # controlled-vocabulary-template
 
-Template repository for controlled vocabularies.
+Template repository for controlled vocabularies for mobilityDCAT-AP.
 
 ## How to
 
-Create a repository starting from this template repository. Rename the folders and the repository accordingly to the identifier of the controlled vocabulary. The IRI of the controlled vocabulary is composed using the repository name as https://w3id.org/my-namespace/controlled-vocabulary-template. The new repository name should be used to replace `controlled-vocabulary-template` in all the places.
+Create a repository starting from this template repository. Rename the folders and the repository accordingly to the identifier of the controlled vocabulary. The IRI of the controlled vocabulary is composed using the repository name as https://w3id.org/mobilitydcat-ap/controlled-vocabulary-template. The new repository name should be used to replace `controlled-vocabulary-template` in all the places.
 
 1. The RDF files describing the controlled vocabularies can be defined manually or by modifying the template Excel file [controlled-vocabulary-template.xlsx](.controlled-vocabulary-template/controlled-vocabulary-template.xlsx). Documentation on how to create more advanced Excel files can be found [here](https://xls2rdf.sparna.fr/rest/doc.html).
 
