@@ -13,7 +13,7 @@ if [ -d './'$VOCABULARY'/'$RELEASE ]; then
 else
 	# From Excel to RDF
 	java -jar tools/xls2rdf.jar convert -i './'$VOCABULARY'/'$VOCABULARY'.xlsx' -o './'$VOCABULARY'/'$VOCABULARY'.ttl' -l en
-	sed -i $'/a skos:ConceptScheme/a\  a owl:Ontology;' './'$VOCABULARY'/'$VOCABULARY'.ttl'
+	sed -i "/a skos:ConceptScheme/ a\  a owl:Ontology;" "./$VOCABULARY/$VOCABULARY.ttl"
 
 	sleep 10
 
@@ -23,7 +23,7 @@ else
 	mkdir './'$VOCABULARY'/'$RELEASE
 
 	# Create serialisations and documentation
-	java -jar tools/widoco.jar -uniteSections -noPlaceHolderText -ontFile './'$VOCABULARY'/'$VOCABULARY'.ttl' -outFolder './'$VOCABULARY'/latest' -lang en
+	java -jar tools/widoco.jar -excludeIntroduction -noPlaceHolderText -ontFile './'$VOCABULARY'/'$VOCABULARY'.ttl' -outFolder './'$VOCABULARY'/latest' -lang en
 
 	# Move files
 	mv './'$VOCABULARY'/latest/index-en.html' './'$VOCABULARY'/latest/index.html'
@@ -32,6 +32,12 @@ else
 		mv './'$VOCABULARY'/latest/ontology.'$EXT './'$VOCABULARY'/latest/'$VOCABULARY'.'$EXT
 		sed -i 's/ontology.'$EXT'/'$VOCABULARY'.'$EXT'/g' './'$VOCABULARY'/latest/index.html'
 	done
+
+	# Keep sections if folder exists
+	if [ -e ./$VOCABULARY/sections ]; then
+    	cp -r './'$VOCABULARY'/sections/'* './'$VOCABULARY'/latest/sections'
+	fi
+
 
 	# Keep both extensions for rdf/xml
 	cp './'$VOCABULARY'/latest/'$VOCABULARY'.owl' './'$VOCABULARY'/latest/'$VOCABULARY'.rdf'
